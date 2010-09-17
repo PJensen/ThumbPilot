@@ -1,8 +1,12 @@
 #Thumb-Pilot
 1. Development
+
 [Install Android SDK] http://dl.google.com/android/android-sdk_r07-windows.zip
+
 [Install Eclipse] http://www.eclipse.org/downloads/packages/eclipse-ide-java-developers/heliosr
+
 [Install Eclipse Plugin] http://developer.android.com/sdk/eclipse-adt.html
+
    1.  Start Eclipse, then select Help > Install New Software.
    2. In the Available Software dialog, click Add....
    3. In the Add Site dialog that appears, enter a name for the remote site (for example, "Android Plugin") in the "Name" field.
