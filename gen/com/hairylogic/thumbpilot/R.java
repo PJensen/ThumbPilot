@@ -11,8 +11,17 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int ic_launcher_thumbp72=0x7f020000;
-        public static final int icon=0x7f020001;
+        public static final int bonus_blue=0x7f020000;
+        public static final int bonus_glass=0x7f020001;
+        public static final int bonus_marble=0x7f020002;
+        public static final int bonus_nuke=0x7f020003;
+        public static final int enemy_fire=0x7f020004;
+        public static final int enemy_metal=0x7f020005;
+        public static final int high_scores=0x7f020006;
+        public static final int ic_launcher_thumbp72=0x7f020007;
+        public static final int icon=0x7f020008;
+        public static final int quit_button=0x7f020009;
+        public static final int start_button=0x7f02000a;
     }
     public static final class layout {
         public static final int main=0x7f030000;

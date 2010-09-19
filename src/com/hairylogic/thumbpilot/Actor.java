@@ -1,6 +1,5 @@
 package com.hairylogic.thumbpilot;
 
-import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
@@ -22,12 +21,11 @@ public abstract class Actor extends Drawable {
 	 * @param aMatrix
 	 * @param aPaint
 	 */
-	public Actor(int aX, int aY, Bitmap aBitmap, Matrix aMatrix, Paint aPaint) {
+	public Actor(int aX, int aY) {
 		this.x = aX;
 		this.y = aY;
-		this.mPaint = aPaint;
-		this.mBitmap = aBitmap;
-		this.mMatrix = aMatrix;
+		this.mPaint = new Paint();
+		this.mMatrix = new Matrix();
 	}
 		
 	/**
@@ -70,14 +68,25 @@ public abstract class Actor extends Drawable {
 	/**
 	 * The x-coordinate for this Actor.
 	 */
-	private int x;
+	protected int x;
 	
 	/**
 	 * The y-coordinate for this Actor.
 	 */
-	private int y;
+	protected int y;
+	
+	/**
+	 * Something that is invalidated should be considered totally invalid for any
+	 * of the following reasons.
+	 * - A collision occurred which required the object be invalidated.
+	 * - The object went off of the screen.
+	 * - The object is in an otherwise unacceptable state.
+	 */
+	protected boolean invalidated = false;
 
+	@Deprecated
 	protected Matrix mMatrix;
+	
 	protected Paint mPaint;
-	protected Bitmap mBitmap;
+
 }
