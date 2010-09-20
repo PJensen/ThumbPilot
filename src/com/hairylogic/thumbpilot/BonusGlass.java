@@ -29,6 +29,9 @@ public class BonusGlass extends Bonus {
 
 	@Override
 	public void setColorFilter(ColorFilter arg0) { }
-
+	
+	/**
+	 * This static bitmap *must* be loaded at startup.
+	 */
 	static Bitmap mBitmap;
 }

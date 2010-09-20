@@ -5,10 +5,9 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 
 public class Player extends Drawable {
-	
-	// public Player() { }
 	
 	public Player(int aX, int aY) {
 		this.x = aX;

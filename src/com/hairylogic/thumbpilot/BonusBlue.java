@@ -13,6 +13,8 @@ public class BonusBlue extends Bonus {
 	@Override
 	public void doMove() {
 		y = y + 1;
+		x = x + ThumbPilot.mRandom.nextInt(2);
+		x = x - ThumbPilot.mRandom.nextInt(2);
 	}
 
 	@Override
@@ -33,5 +35,8 @@ public class BonusBlue extends Bonus {
 	public void setColorFilter(ColorFilter cf) {
 	}
 
+	/**
+	 * Static bitmap loaded at startup.
+	 */
 	static Bitmap mBitmap;
 }

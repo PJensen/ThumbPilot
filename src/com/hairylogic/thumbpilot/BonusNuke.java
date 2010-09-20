@@ -39,5 +39,8 @@ public class BonusNuke extends Bonus {
 		// TODO Auto-generated method stub
 	}
 	
+	/**
+	 * Static bitmap loaded @ startup.
+	 */
 	static Bitmap mBitmap;
 }

@@ -1,6 +1,7 @@
 package com.hairylogic.thumbpilot;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,13 +23,20 @@ public class ThumbPilot extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        // Load all bitmaps *extactly* one time to ensure efficiency.
         BonusGlass.mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bonus_glass);
         BonusBlue.mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bonus_blue);
         BonusNuke.mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bonus_nuke);
+        
+        // Set the content view to point to the screen that we *just* created.
         setContentView(mScreen = (new Screen(this)));
-        mThread = new Thread(new MainThread());
+        
         mBonuses.add(new BonusBlue(10, 10));
+        
+        // Fire the main thread.
         mThread.start();
+        
         // Toast.makeText(this, "Testing", 1).show();
     }
     
@@ -51,8 +59,38 @@ public class ThumbPilot extends Activity {
     	super.onStop();
     }
     
-    public static ArrayList<Bonus> mBonuses = new ArrayList<Bonus>();
-    public static Player mPlayer = new Player(0, 0);
+    /**
+     * The screen that *everything* is drawn on.
+     */
     public static Screen mScreen;
-    public static Thread mThread; 
+    
+    /**
+     * List of all enemies in the zone. invalidated or otherwise.
+     */
+    public static ArrayList<Enemy> mEnemies = new ArrayList<Enemy>();
+    
+    /**
+     * List of all bonuses in the zone. invalidated or otherwise.
+     */
+    public static ArrayList<Bonus> mBonuses = new ArrayList<Bonus>();
+    
+    /**
+     * The players object
+     */
+    public static Player mPlayer = new Player(0, 0);
+    
+    /**
+     * The draw-able score tracking object.
+     */
+    public static Score mScore = new Score();
+    	
+    /**
+     * The main-game thread; does all game logic etc.
+     */
+    public static Thread mThread = new Thread(new MainThread());
+    
+    /**
+     * Not a fan of creating a new Random() object every time we need one.
+     */
+    public static Random mRandom = new Random();
 }	
