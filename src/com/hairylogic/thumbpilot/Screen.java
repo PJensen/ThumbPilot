@@ -41,7 +41,7 @@ public class Screen extends View {
 		this.invalidate();
 	}
 
-	/**
+	/**	
 	 * Draw all bonuses on the canvas; synchronized to avoid threading issues.
 	 * @param canvas - The canvas to draw on.
 	 */

@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -29,6 +30,13 @@ public class ThumbPilot extends Activity {
         mBonuses.add(new BonusBlue(10, 10));
         mThread.start();
         // Toast.makeText(this, "Testing", 1).show();
+    }
+    
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+    	Player.x = (int) event.getX();
+    	Player.y = (int) event.getY();
+    	return super.onTouchEvent(event);
     }
     
     @Override
