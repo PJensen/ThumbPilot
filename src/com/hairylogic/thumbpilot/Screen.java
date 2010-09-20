@@ -31,11 +31,14 @@ public class Screen extends View {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		
+		// Draw all bonuses that are on the screen.
 		drawBonuses(canvas);
 		
+		// Draw the player.
 		ThumbPilot.mPlayer.draw(canvas);		
 		
-		invalidate();
+		// Invalidate the display.
+		this.invalidate();
 	}
 
 	/**

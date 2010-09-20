@@ -66,6 +66,13 @@ public abstract class Actor extends Drawable {
 	}
 	
 	/**
+	 * When collisions occur the actor will become invalidated and will no longer be shown.
+	 */
+	public void invalidate() {
+		invalidated = true;
+	}
+	
+	/**
 	 * The x-coordinate for this Actor.
 	 */
 	protected int x;
