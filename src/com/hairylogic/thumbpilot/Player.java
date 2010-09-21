@@ -7,11 +7,11 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 
-public class Player extends Drawable {
+public final class Player extends Drawable {
 	
 	public Player(int aX, int aY) {
-		this.x = aX;
-		this.y = aY;
+		x = aX;
+		y = aY;
 		mPaint = new Paint();
 		mPaint.setColor(Color.RED);
 	}
@@ -19,6 +19,8 @@ public class Player extends Drawable {
 	public static int x;
 	public static int y;
 	public static Paint mPaint;
+	public final static int MAX_LIVES = 5;
+	public static int mLives = MAX_LIVES;
 	
 	@Override
 	public void draw(Canvas canvas) {

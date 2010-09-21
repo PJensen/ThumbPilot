@@ -4,24 +4,32 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 
-public class BonusNuke extends Bonus {
+public class EnemyMetal extends Enemy {
 
-	public BonusNuke(int aX, int aY) {
+	public EnemyMetal(int aX, int aY) {
 		super(aX, aY);
 	}
 
 	@Override
 	public void doMove() {
-		// TODO Auto-generated method stub
-		
+		this.y += 1;
 	}
 
 	@Override
 	public void draw(Canvas canvas) {
-		// TODO Auto-generated method stub
-		
+
+	}
+	
+	public int getHeight() {
+		return mBitmap.getHeight();
 	}
 
+	public int getWidth() {
+		return mBitmap.getWidth();
+	}
+	
+	public static Bitmap mBitmap;
+	
 	@Override
 	public int getOpacity() {
 		// TODO Auto-generated method stub
@@ -31,24 +39,12 @@ public class BonusNuke extends Bonus {
 	@Override
 	public void setAlpha(int alpha) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setColorFilter(ColorFilter cf) {
 		// TODO Auto-generated method stub
-	}
-	
-	/**
-	 * Static bitmap loaded @ startup.
-	 */
-	static Bitmap mBitmap;
-	
-	public int getHeight() {
-		return mBitmap.getHeight();
-	}
 
-	public int getWidth() {
-		return mBitmap.getWidth();
 	}
 }

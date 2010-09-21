@@ -34,4 +34,12 @@ public class BonusGlass extends Bonus {
 	 * This static bitmap *must* be loaded at startup.
 	 */
 	static Bitmap mBitmap;
+	
+	public int getHeight() {
+		return mBitmap.getHeight();
+	}
+
+	public int getWidth() {
+		return mBitmap.getWidth();
+	}
 }

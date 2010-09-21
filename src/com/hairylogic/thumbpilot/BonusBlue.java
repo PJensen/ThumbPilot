@@ -16,12 +16,12 @@ public class BonusBlue extends Bonus {
 		y = y + 1;
 		x = x + ThumbPilot.mRandom.nextInt(2);
 		x = x - ThumbPilot.mRandom.nextInt(2);
-		_smoker.addSmoke(new Point(x, y));
+		// _smoker.addSmoke(new Point(x, y));
 	}
 
 	@Override
 	public void draw(Canvas canvas) {
-		_smoker.draw(canvas);
+		// _smoker.draw(canvas);
 		canvas.drawBitmap(mBitmap, x, y, mPaint);
 	}
 
@@ -43,5 +43,16 @@ public class BonusBlue extends Bonus {
 	 */
 	static Bitmap mBitmap;
 	
-	private Smoker _smoker = new Smoker(50);
+	/**
+	 * Smoke trails
+	 */
+	// private Smoker _smoker = new Smoker(50, 1, getWidth());
+
+	public int getHeight() {
+		return mBitmap.getHeight();
+	}
+
+	public int getWidth() {
+		return mBitmap.getWidth();
+	}
 }

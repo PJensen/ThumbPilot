@@ -2,13 +2,13 @@ package com.hairylogic.thumbpilot;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Toast;
 
 public class ThumbPilot extends Activity {
 	
@@ -21,11 +21,11 @@ public class ThumbPilot extends Activity {
         BonusGlass.mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bonus_glass);
         BonusBlue.mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bonus_blue);
         BonusNuke.mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bonus_nuke);
+        EnemyMetal.mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.enemy_metal);
+        EnemyFire.mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.enemy_fire);
         
         // Set the content view to point to the screen that we *just* created.
         setContentView(mScreen = (new Screen(this)));
-        
-        mBonuses.add(new BonusBlue(10, 10));
         
         // Fire the main thread.
         if (!mThread.isAlive())
@@ -49,12 +49,14 @@ public class ThumbPilot extends Activity {
     /**
      * List of all enemies in the zone. invalidated or otherwise.
      */
-    public static ArrayList<Enemy> mEnemies = new ArrayList<Enemy>();
+    public static BlockingQueue<Enemy> mEnemies = new LinkedBlockingQueue<Enemy>();
     
     /**
      * List of all bonuses in the zone. invalidated or otherwise.
      */
-    public static ArrayList<Bonus> mBonuses = new ArrayList<Bonus>();
+    // public static ArrayList<Bonus> mBonuses = new ArrayList<Bonus>();
+    
+    public static BlockingQueue<Bonus> mBonuses = new LinkedBlockingQueue<Bonus>();	
     
     /**
      * The players object

@@ -10,7 +10,7 @@ import android.graphics.drawable.Drawable;
  * 
  * @author dasm80x86
  */
-public abstract class Actor extends Drawable {
+public abstract class Actor extends Drawable implements IHasWidthHeight {
 		
 	/**
 	 * Explicit constructor sets both the x and y coordinate for a new

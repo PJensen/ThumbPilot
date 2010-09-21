@@ -13,15 +13,24 @@ public final class MainThread implements Runnable {
 	/**
 	 * Implements Runnable
 	 */
-	public void run() {
+	public synchronized void run() {
 		// This thread should be considered always running unless
 		// stopped; 
 		while (true) {
+			// TODO: Level based calculation and addition of enemies and
 			
-			// Apply the move operation to *all* bonuses. 
-			Iterator<Bonus> iBonus = ThumbPilot.mBonuses.iterator();
-			while (iBonus.hasNext()) {
-				iBonus.next().doMove();
+			try {
+			if (ThumbPilot.mRandom.nextInt(500) < 10)
+			ThumbPilot.mBonuses.add(new BonusBlue(
+					ThumbPilot.mRandom.nextInt(ThumbPilot.mScreen.getWidth() - 100) + 50, 10));
+			} catch(Exception ex) { }
+			
+			if (ThumbPilot.mBonuses.size() > 0) {
+			// 	Apply the move operation to *all* bonuses. 
+				Iterator<Bonus> iBonus = ThumbPilot.mBonuses.iterator();
+				while (iBonus.hasNext()) {
+					iBonus.next().doMove();
+				}
 			}
 			
 			// TODO: Apply the move operation to *all* enemies.
@@ -34,6 +43,17 @@ public final class MainThread implements Runnable {
 			catch (InterruptedException e) { }
 		}
 	}
+	
+	/**
+	 * The current level that the player is on; 
+	 * Defaults to one.
+	 */
+	public int mLevel = 0x0001;
+	
+	/**
+	 * The maximum level the player can reach.
+	 */
+	private final int MAX_LEVEL = 2;
 	
 	/**
 	 * Predefined amount of time to wait between applying logical 

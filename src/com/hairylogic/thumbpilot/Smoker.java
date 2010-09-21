@@ -1,18 +1,12 @@
 package com.hairylogic.thumbpilot;
 
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Queue;
-import java.util.concurrent.BlockingQueue;
-
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.Paint.Cap;
-import android.graphics.PathDashPathEffect.Style;
 import android.graphics.drawable.Drawable;
 
 public class Smoker extends Drawable {
@@ -21,39 +15,27 @@ public class Smoker extends Drawable {
 	private final int _smokeTrailLength;
 	
 	// The style this smoke trail will be drawn in.
-	private final Paint _smokePaint;
+	private Paint _smokePaint;
 	
 	private int _density;
 	private int _densityCount = 0;
-	
 	final static int DEFAULT_DENSITY = 1;
+	private int _parentWidth;
 	
 	// The linked list that represents each point in the smoke trail.
 	private LinkedList<Point> _smokeTrail = new LinkedList<Point>();
 	
-	
-	// Experimental.
-	private Path _smokePath = new Path();
-	
-	/**
-	 * Constructor that takes the length that this smoketrail will forever be.
-	 * @param aSmokeTrailLength
-	 */
-	public Smoker(int aSmokeTrailLength) {
-		this(aSmokeTrailLength, DEFAULT_DENSITY);
-	}
-	
-	public Smoker(int aSmokeTrailLength, int aDenisty)
-		
+	public Smoker(int aSmokeTrailLength, int aDenisty, int aWidth)
 	{
+		// Set the length of the smoke trail.
 		_smokeTrailLength = aSmokeTrailLength;
 		_smokePaint = new Paint();
 		_smokePaint.setColor(Color.WHITE);
-		_smokePaint.setStrokeCap(Cap.ROUND);
-		_smokePaint.setAntiAlias(true);
-		_smokePaint.setStrokeWidth(5);
+		_smokePaint.setStrokeCap(Cap.SQUARE);
+		_smokePaint.setStrokeWidth(aWidth / 4);			
 		_smokeTrail = new LinkedList<Point>();
 		_density = aDenisty;
+		_parentWidth = aWidth;	
 	}
 	
 	/**
@@ -75,9 +57,17 @@ public class Smoker extends Drawable {
 	 */
 	@Override
 	public void draw(Canvas canvas) {
+		for (int index = 0; index < _smokeTrail.size();++index) {
+			Point tmpPoint = _smokeTrail.get(index);
+			tmpPoint.x += (_parentWidth / 2);
+			canvas.drawPoint(tmpPoint.x, tmpPoint.y, _smokePaint);
+		}
+		
+		/*
 		_smokePath = new Path();
 		for (int index = 0; index < _smokeTrail.size(); ++index) {
 			Point tmpPoint = _smokeTrail.get(index);
+			tmpPoint.x += (_parentWidth / 2);
 			if (index == 0)
 				_smokePath.moveTo(tmpPoint.x, tmpPoint.y);
 			else if (index == _smokeTrail.size() - 1)
@@ -85,6 +75,7 @@ public class Smoker extends Drawable {
 			else _smokePath.lineTo(tmpPoint.x, tmpPoint.y);
 			canvas.drawPath(_smokePath, _smokePaint);
 		}
+		*/
 	}
 
 	@Override
