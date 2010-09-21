@@ -38,16 +38,24 @@ public final class MainThread implements Runnable {
 			}
 			
 			// Reset both of the above iterators
-			// iEnemy = ThumbPilot.mEnemies.iterator();
-			// iBonus = ThumbPilot.mBonuses.iterator();
+			iEnemy = ThumbPilot.mEnemies.iterator();
+			iBonus = ThumbPilot.mBonuses.iterator();
 			
 			// Detect bonus collisions with the player
-			// while (iBonus.hasNext()) {
-//				Bonus tmpBonus = iBonus.next();
+			while (iBonus.hasNext()) {
+				Bonus tmpBonus = iBonus.next();	
+				if (tmpBonus.invalidated) 
+					continue;
+				double tmpDist = Math.sqrt(Math.pow(tmpBonus.x - Player.x, 2) + 
+						Math.pow(tmpBonus.y - Player.y, 2));
+				tmpDist -= tmpBonus.getWidth() / 2;
+				tmpDist -= 20;
 				
-//				Math.sqrt(Math.pow(tmpBonus.x + Player.x, 2) - Math.pow(tmpBonus.y + Player.y, 2));
-				
-			//}
+				if (tmpDist < 0){
+					ThumbPilot.mScore.score += 10;
+					tmpBonus.invalidate();
+				}
+			}
 			
 			// Free both of these.
 			iEnemy = null;

@@ -9,7 +9,7 @@ import android.graphics.drawable.Drawable;
 
 public final class Score extends Drawable {
 	
-	private static int _score = 0;
+	public int score = 0;
 	private Paint _paint = new Paint();
 	
 	private final int X_LOCATION = 10;
@@ -34,29 +34,13 @@ public final class Score extends Drawable {
 	
 	@Override
 	public void draw(Canvas canvas) {
-		if (_score < 0)
+		if (score < 0)
 			_paint.setColor(Color.RED);
 		else _paint.setColor(Color.WHITE);
 		
-		canvas.drawText(Integer.toString(_score), X_LOCATION, Y_LOCATION, _paint);
-	}
-	
-	/**
-	 * Manually set the score here; even though it's the players score
-	 * Perhaps later on down the line the player object could be passed.
-	 * @param aNewScore
-	 */
-	public static void setScore(int aNewScore) {
-		_score = aNewScore;
+		canvas.drawText(Integer.toString(score), X_LOCATION, Y_LOCATION, _paint);
 	}
 
-	/**
-	 * Get the score.
-	 * @return - The score of the current player as an integer.
-	 */
-	public static int getScore() {
-		return _score;
-	}
 	@Override
 	public int getOpacity() {
 		return 0;

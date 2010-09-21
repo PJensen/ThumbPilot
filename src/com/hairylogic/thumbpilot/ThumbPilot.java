@@ -27,6 +27,9 @@ public class ThumbPilot extends Activity {
         // Set the content view to point to the screen that we *just* created.
         setContentView(mScreen = (new Screen(this)));
         
+        if (mPlayer == null && mScreen != null)
+        	mPlayer = new Player(mScreen.getWidth() / 2, mScreen.getHeight() / 2);
+        	
         // Fire the main thread.
         if (!mThread.isAlive())
         	mThread.start();
@@ -61,7 +64,7 @@ public class ThumbPilot extends Activity {
     /**
      * The players object
      */
-    public static Player mPlayer = new Player(0, 0);
+    public static Player mPlayer = new Player(50, 50);
     
     /**
      * The draw-able score tracking object.
