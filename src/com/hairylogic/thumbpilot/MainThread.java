@@ -39,5 +39,5 @@ public final class MainThread implements Runnable {
 	 * Predefined amount of time to wait between applying logical 
 	 * game operations.
 	 */
-	private final long THREAD_DELAY = 100L;
+	private final long THREAD_DELAY = 10L;
 }

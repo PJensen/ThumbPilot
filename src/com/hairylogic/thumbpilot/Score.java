@@ -14,7 +14,7 @@ public final class Score extends Drawable {
 	
 	private final int X_LOCATION = 10;
 	private final int Y_LOCATION = 20;
-	private final int TEXT_SIZE = 15;
+	private final int TEXT_SIZE = 25;
 	private final int TEXT_COLOR = Color.WHITE;
 	
 	Score() { 

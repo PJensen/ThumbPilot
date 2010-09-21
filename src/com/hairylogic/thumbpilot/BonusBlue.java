@@ -3,6 +3,7 @@ package com.hairylogic.thumbpilot;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Point;
 
 public class BonusBlue extends Bonus {
 
@@ -15,10 +16,12 @@ public class BonusBlue extends Bonus {
 		y = y + 1;
 		x = x + ThumbPilot.mRandom.nextInt(2);
 		x = x - ThumbPilot.mRandom.nextInt(2);
+		_smoker.addSmoke(new Point(x, y));
 	}
 
 	@Override
 	public void draw(Canvas canvas) {
+		_smoker.draw(canvas);
 		canvas.drawBitmap(mBitmap, x, y, mPaint);
 	}
 
@@ -39,4 +42,6 @@ public class BonusBlue extends Bonus {
 	 * Static bitmap loaded at startup.
 	 */
 	static Bitmap mBitmap;
+	
+	private Smoker _smoker = new Smoker(50);
 }

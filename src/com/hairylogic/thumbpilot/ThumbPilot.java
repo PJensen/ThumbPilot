@@ -4,21 +4,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
 public class ThumbPilot extends Activity {
-
+	
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,8 +28,9 @@ public class ThumbPilot extends Activity {
         mBonuses.add(new BonusBlue(10, 10));
         
         // Fire the main thread.
-        mThread.start();
-        
+        if (!mThread.isAlive())
+        	mThread.start();
+
         // Toast.makeText(this, "Testing", 1).show();
     }
     
@@ -46,19 +40,7 @@ public class ThumbPilot extends Activity {
     	Player.y = (int) event.getY();
     	return super.onTouchEvent(event);
     }
-    
-    @Override
-    protected void onStart() {
-    	// mThread.start();
-    	super.onStart();
-    }
-    
-    @Override
-    protected void onStop() {
-    	// mThread.stop();
-    	super.onStop();
-    }
-    
+        
     /**
      * The screen that *everything* is drawn on.
      */
