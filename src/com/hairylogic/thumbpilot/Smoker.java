@@ -1,6 +1,8 @@
 package com.hairylogic.thumbpilot;
 
 import java.util.LinkedList;
+import java.util.concurrent.LinkedBlockingQueue;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -23,7 +25,7 @@ public class Smoker extends Drawable {
 	private int _parentWidth;
 	
 	// The linked list that represents each point in the smoke trail.
-	private LinkedList<Point> _smokeTrail = new LinkedList<Point>();
+	private LinkedBlockingQueue<Point> _smokeTrail = new LinkedBlockingQueue<Point>();
 	
 	public Smoker(int aSmokeTrailLength, int aDenisty, int aWidth)
 	{
@@ -33,7 +35,7 @@ public class Smoker extends Drawable {
 		_smokePaint.setColor(Color.WHITE);
 		_smokePaint.setStrokeCap(Cap.SQUARE);
 		_smokePaint.setStrokeWidth(aWidth / 4);			
-		_smokeTrail = new LinkedList<Point>();
+		_smokeTrail = new LinkedBlockingQueue<Point>();
 		_density = aDenisty;
 		_parentWidth = aWidth;	
 	}
@@ -57,11 +59,12 @@ public class Smoker extends Drawable {
 	 */
 	@Override
 	public void draw(Canvas canvas) {
+		/*
 		for (int index = 0; index < _smokeTrail.size();++index) {
-			Point tmpPoint = _smokeTrail.get(index);
+			Point tmpPoint = _smokeTrail.
 			tmpPoint.x += (_parentWidth / 2);
 			canvas.drawPoint(tmpPoint.x, tmpPoint.y, _smokePaint);
-		}
+		}*/
 		
 		/*
 		_smokePath = new Path();
