@@ -1,5 +1,6 @@
 package com.hairylogic.thumbpilot;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -48,7 +49,7 @@ public class Smoker extends Drawable {
 		if (_densityCount % _density == 0) {
 			_smokeTrail.offer(aPoint);
 			if (_smokeTrail.size() - 1 >= _smokeTrailLength)
-				_smokeTrail.removeFirst();
+				_smokeTrail.poll();
 			_densityCount = 0;
 		}	
 		_densityCount += 1;
@@ -59,6 +60,14 @@ public class Smoker extends Drawable {
 	 */
 	@Override
 	public void draw(Canvas canvas) {
+		
+		Iterator<Point> iPoints = _smokeTrail.iterator();
+		while (iPoints.hasNext()) {
+			Point tmpPoint = iPoints.next();
+			tmpPoint.x += (_parentWidth / 2);
+			canvas.drawPoint(tmpPoint.x, tmpPoint.y, _smokePaint);
+		}
+		
 		/*
 		for (int index = 0; index < _smokeTrail.size();++index) {
 			Point tmpPoint = _smokeTrail.

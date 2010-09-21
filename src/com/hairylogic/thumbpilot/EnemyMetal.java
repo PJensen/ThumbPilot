@@ -17,7 +17,7 @@ public class EnemyMetal extends Enemy {
 
 	@Override
 	public void draw(Canvas canvas) {
-
+		canvas.drawBitmap(mBitmap, x, y, mPaint);
 	}
 	
 	public int getHeight() {

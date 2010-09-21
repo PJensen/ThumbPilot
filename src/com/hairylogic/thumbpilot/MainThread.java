@@ -19,21 +19,40 @@ public final class MainThread implements Runnable {
 		while (true) {
 			// TODO: Level based calculation and addition of enemies and
 			
-			try {
 			if (ThumbPilot.mRandom.nextInt(500) < 10)
-			ThumbPilot.mBonuses.add(new BonusBlue(
+				ThumbPilot.mBonuses.add(new BonusBlue(
 					ThumbPilot.mRandom.nextInt(ThumbPilot.mScreen.getWidth() - 100) + 50, 10));
-			} catch(Exception ex) { }
+			if (ThumbPilot.mRandom.nextInt(500) < 2)
+				ThumbPilot.mEnemies.add(new EnemyMetal(0, 1));
 			
-			if (ThumbPilot.mBonuses.size() > 0) {
 			// 	Apply the move operation to *all* bonuses. 
-				Iterator<Bonus> iBonus = ThumbPilot.mBonuses.iterator();
-				while (iBonus.hasNext()) {
-					iBonus.next().doMove();
-				}
+			Iterator<Bonus> iBonus = ThumbPilot.mBonuses.iterator();
+			while (iBonus.hasNext()) {
+				iBonus.next().doMove();
 			}
 			
-			// TODO: Apply the move operation to *all* enemies.
+			// Apply the move operation to *all* enemies.
+			Iterator<Enemy> iEnemy = ThumbPilot.mEnemies.iterator();
+			while (iEnemy.hasNext()) {
+				iEnemy.next().doMove();
+			}
+			
+			// Reset both of the above iterators
+			// iEnemy = ThumbPilot.mEnemies.iterator();
+			// iBonus = ThumbPilot.mBonuses.iterator();
+			
+			// Detect bonus collisions with the player
+			// while (iBonus.hasNext()) {
+//				Bonus tmpBonus = iBonus.next();
+				
+//				Math.sqrt(Math.pow(tmpBonus.x + Player.x, 2) - Math.pow(tmpBonus.y + Player.y, 2));
+				
+			//}
+			
+			// Free both of these.
+			iEnemy = null;
+			iBonus = null;
+			
 			// TODO: Detected collisions between enemies and bonuses
 			// TODO: Detect collisions between player and bonuses
 			// TODO: Detected collisions between player and enemies

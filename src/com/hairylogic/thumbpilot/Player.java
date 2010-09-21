@@ -7,7 +7,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 
-public final class Player extends Drawable {
+public final class Player extends Drawable implements IHasWidthHeight {
 	
 	public Player(int aX, int aY) {
 		x = aX;
@@ -41,7 +41,14 @@ public final class Player extends Drawable {
 
 	@Override
 	public void setColorFilter(ColorFilter cf) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
+	}
+
+	public int getHeight() {
+		return 40;
+	}
+
+	public int getWidth() {
+		return 40;
 	}
 }
